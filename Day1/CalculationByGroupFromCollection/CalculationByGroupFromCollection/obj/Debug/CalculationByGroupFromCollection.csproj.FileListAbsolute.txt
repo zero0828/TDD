@@ -3,3 +3,8 @@ C:\Users\Ching\Desktop\CalculationByGroupFromCollection\CalculationByGroupFromCo
 C:\Users\Ching\Desktop\CalculationByGroupFromCollection\CalculationByGroupFromCollection\obj\Debug\CalculationByGroupFromCollection.csprojResolveAssemblyReference.cache
 C:\Users\Ching\Desktop\CalculationByGroupFromCollection\CalculationByGroupFromCollection\obj\Debug\CalculationByGroupFromCollection.dll
 C:\Users\Ching\Desktop\CalculationByGroupFromCollection\CalculationByGroupFromCollection\obj\Debug\CalculationByGroupFromCollection.pdb
+D:\TDD\2017 自動測試與 TDD 實務開發 第八梯\Code\TDD\Day1\CalculationByGroupFromCollection\CalculationByGroupFromCollection\bin\Debug\CalculationByGroupFromCollection.dll
+D:\TDD\2017 自動測試與 TDD 實務開發 第八梯\Code\TDD\Day1\CalculationByGroupFromCollection\CalculationByGroupFromCollection\bin\Debug\CalculationByGroupFromCollection.pdb
+D:\TDD\2017 自動測試與 TDD 實務開發 第八梯\Code\TDD\Day1\CalculationByGroupFromCollection\CalculationByGroupFromCollection\obj\Debug\CalculationByGroupFromCollection.csprojResolveAssemblyReference.cache
+D:\TDD\2017 自動測試與 TDD 實務開發 第八梯\Code\TDD\Day1\CalculationByGroupFromCollection\CalculationByGroupFromCollection\obj\Debug\CalculationByGroupFromCollection.dll
+D:\TDD\2017 自動測試與 TDD 實務開發 第八梯\Code\TDD\Day1\CalculationByGroupFromCollection\CalculationByGroupFromCollection\obj\Debug\CalculationByGroupFromCollection.pdb
