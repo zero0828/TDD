@@ -1,46 +1,19 @@
-# TDD Day1 Home Work 
+# 2017 自動測試與 TDD 實務開發 第八梯
 
 ---
-## 作業位置：http://bit.ly/91-tdd-day1-homework
+## 為期三天的課程  skilltree: https://skilltree.my/events/7fbac
+## 教你如何開發與設計!
 ---
-## 作業規範：
-- 只收 gist 與 GitHub, 強烈建議為 GitHub，因為 day 2 homework 只收 GitHub
-- 作業可以只交 test case，如果你想挑戰 production code 十分歡迎，但請務必先寫好 test case
-- 測試資料請勿使用迴圈產生，因為這資料只是「剛好」長這樣
 
-## 需求：
-- 該11筆資料，如果要3筆成一組，取得Cost的總和的話，預期結果是 6,15, 24, 21  
-- 該11筆資料，如果是4筆一組，取得 Revenue 總和的話，預期結果會是 50,66,60  
-- 筆數 0 or 負數都拋 ArgumentException {N 筆一組}
-- 尋找的欄位若不存在，預期會拋 ArgumentException
-- 未來可能會新增其他欄位
-- 希望這個API可以給其他 domain entity 用，例如 Employee
+# Day1：
+- 為什麼需要測試
+- 不能被測試的系統會有的問題
+- 單元測試 3A 原則（Arrange, Act, Assert）
+- 單元測試特性FIRST（Fast, Independent, Repeatable, Self-Validating, Timely）
+- 單元測試的Framework + 如何進行撰寫測試與注意事項
+- 使用工具簡化流程、提升速度:Reshaper、OzCode、Wox、VS快捷鍵
 
-## 題目解說:
-- 來源可以是「任何型別的集合」
-- 可以任意決定幾筆一組
-- 回傳每一組 Σf(x) 的集合 {Σ結果型別可直接用int}
-
-## 測試資料:
-  ### Input:
-|Id	| Cost | Revenue | SellPrice |  
-|---|:----:|:-------:|:---------:|  
-|1	|  1   |    11   |    21     |  
-|2	|  2   |    12   |    22     |  
-|3	|  3   |    13   |    23     |  
-|4	|  4   |    14   |    24     |  
-|5	|  5   |    15   |    25     |  
-|6	|  6   |    16   |    26     |  
-|7	|  7   |    17   |    27     |  
-|8  |  8   |    18   |    28     |  
-|9  |  9   |    19   |    29     |  
-|10 |  10  |    20   |    30     |  
-|11 |  11  |    21   |    31     |  
-
-  ### Output:
-| Sample|         activity       |       result      |
-|-------|:----------------------:|:-----------------:|
-|   1 	|  3筆一組，取Cost總和    |     6, 15, 24, 21 |  
-|   2 	|  4筆一組，取Revenue總和 |    50, 66, 60     |  
-  
-   
+# Day2：
+- Web自動化測試 Selenium IDE  + FluentAutomation
+- 利用重構慢慢改善設計，重構則由測試進行保護 (重構-向範式前進)
+- 測試比例金字塔
