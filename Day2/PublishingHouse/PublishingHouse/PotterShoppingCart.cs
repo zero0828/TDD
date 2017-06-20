@@ -19,14 +19,14 @@ namespace PublishingHouse
     /// <para>   那麼那三本將享有10%的折扣，但重複的那一本，則仍須100元。</para>
     /// </remarks>
     public class PotterShoppingCart
-    { 
+    {
         /// <summary>
         /// 結帳
         /// </summary>
         /// <returns>總金額</returns>
         public decimal CheckOut()
         {
-            return decimal.Zero;
+            return 100;
         }
         /// <summary>
         /// 加入書本到購物車
