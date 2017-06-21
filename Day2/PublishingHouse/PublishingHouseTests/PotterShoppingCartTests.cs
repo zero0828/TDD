@@ -59,7 +59,7 @@ namespace PublishingHouse.Tests
         }
 
         [TestMethod()]
-        public void CheckOutTest_第一到三集各買1本_共三本書_1本單價100元_打95折_結帳總金額為270元()
+        public void CheckOutTest_第一到三集各買1本_共三本書_1本單價100元_打9折_結帳總金額為270元()
         {
             //arrange 
             var target = new PotterShoppingCart();
@@ -73,6 +73,29 @@ namespace PublishingHouse.Tests
 
             //預期折扣後總金額
             var expected = 270m;
+
+            //act
+            var actual = target.CheckOut();
+
+            //assert 
+            Assert.AreEqual(expected, actual);
+        }
+        [TestMethod()]
+        public void CheckOutTest_第一到四集各買1本_共四本書_1本單價100元_打8折_結帳總金額為320元()
+        {
+            //arrange 
+            var target = new PotterShoppingCart();
+
+            //每一本單價100元   
+            target.addMerchandiseToCart<Book>(new List<Book>(){
+                                    new Book() { Name = "第一集", Price = 100 },
+                                    new Book() { Name = "第二集", Price = 100 },
+                                    new Book() { Name = "第三集", Price = 100 },
+                                    new Book() { Name = "第四集", Price = 100 }},
+                                    (book) => book.Price);
+
+            //預期折扣後總金額
+            var expected = 320m;
 
             //act
             var actual = target.CheckOut();
