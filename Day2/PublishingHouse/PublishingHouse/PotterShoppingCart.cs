@@ -67,10 +67,7 @@ namespace PublishingHouse
                 var discount = this.CalculateTheDiscount(discountBooks.Count());
                 var originalPrice = discountBooks.Sum(book => book.price);
                 discountMoney += originalPrice * (1 - discount);
-                foreach (var book in discountBooks)
-                {
-                    notYetDiscountBooks.Remove(book);
-                }
+                notYetDiscountBooks = notYetDiscountBooks.Except(discountBooks).ToList();               
             }
 
             return discountMoney;
