@@ -40,18 +40,29 @@ namespace PublishingHouse
         private decimal CalculateTotalPrice()
         {
             var originalPrice = this.merchandises.Sum(book => book.price);
-            var bookCountFromDiscounte = this.merchandises.GroupBy(book => book.series).Count();
-            var discount = this.CalculateTheDiscount(bookCountFromDiscounte);
-
-            var totalPrice = originalPrice * discount;
+            var discountMoney = this.CalculateTheDiscountMoney();
+            var totalPrice = originalPrice - discountMoney;
             return totalPrice;
         }
         /// <summary>
         /// 加入書本到購物車
         /// </summary>           
-        public void addMerchandiseToCart(IEnumerable<Book> list)
+        public void addMerchandiseToCart(IEnumerable<Book> books)
         {
-            this.merchandises.AddRange(list);
+            this.merchandises.AddRange(books);
+        }
+        /// <summary>
+        /// 計算總共折扣多少錢
+        /// </summary>
+        private decimal CalculateTheDiscountMoney()
+        {
+            var discountBooks =
+                this.merchandises.GroupBy(book => book.series).Select(g => g.First()).ToList();
+            var discount = this.CalculateTheDiscount(discountBooks.Count());
+
+            var originalPrice = discountBooks.Sum(book => book.price);
+
+            return originalPrice * (1 - discount);
         }
         /// <summary>
         /// 計算折扣
