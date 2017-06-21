@@ -19,26 +19,26 @@ namespace PublishingHouse
     /// <para>   那麼那三本將享有10%的折扣，但重複的那一本，則仍須100元。</para>
     /// </remarks>
     public class PotterShoppingCart
-    { 
+    {
+        private decimal totalPrice = decimal.Zero;
         /// <summary>
         /// 結帳
         /// </summary>
         /// <returns>總金額</returns>
         public decimal CheckOut()
         {
-            return 100;
+            return this.totalPrice;
         }
         /// <summary>
         /// 加入書本到購物車
-        /// </summary>
-        public void addBookToCart()
+        /// </summary>           
+        public void addBookToCart(IEnumerable<Book> list)
         {
-            
-        }
-
-        public void addBookToCart(Book book)
-        {
-             
+            this.totalPrice = list.Sum((book) => book.Price);
+            if(list.Count() == 2)
+            {
+                this.totalPrice = this.totalPrice * 0.95m;
+            }
         }
     }
 }

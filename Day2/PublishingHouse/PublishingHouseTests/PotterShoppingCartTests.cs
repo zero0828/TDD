@@ -22,10 +22,11 @@ namespace PublishingHouse.Tests
             //arrange 
             var target = new PotterShoppingCart();
 
-            target.addBookToCart();
+            target.addBookToCart(new List<Book>()
+                                    {new Book() { Name = "第一集", Price = 100 }});
 
             //每一本都是賣100元
-            var expected = 100;
+            var expected = 100m;
 
             //act
             var actual = target.CheckOut();
@@ -40,12 +41,13 @@ namespace PublishingHouse.Tests
             //arrange 
             var target = new PotterShoppingCart();
 
-            //每一本單價100元
-            target.addBookToCart(new Book() { Name = "", Price = 100 });
-            target.addBookToCart(new Book() { Name = "", Price = 100 });
+            //每一本單價100元   
+            target.addBookToCart(new List<Book>()
+                                    {new Book() { Name = "第一集", Price = 100 }
+                                    ,new Book() { Name = "第二集", Price = 100 }});
 
             //預期折扣後總金額
-            var expected = 195;
+            var expected = 190m;
 
             //act
             var actual = target.CheckOut();
