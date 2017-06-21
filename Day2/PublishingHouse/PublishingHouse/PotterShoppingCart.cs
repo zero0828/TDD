@@ -24,25 +24,26 @@ namespace PublishingHouse
         /// 所有商品
         /// </summary>
         private List<Book> merchandises = new List<Book>();
-        /// <summary>
-        /// 折扣前的總價格
-        /// </summary>
-        private decimal originalPrice
-        {
-            get
-            {
-                return this.merchandises.Sum(book => book.price);
-            }
-        }
+
         /// <summary>
         /// 結帳
         /// </summary>
         /// <returns>總金額</returns>
         public decimal CheckOut()
         {
-            var bookCount = this.merchandises.GroupBy(book => book.series).Count();
-            var discount = this.CalculateTheDiscount(bookCount);
-            var totalPrice = this.originalPrice * discount;
+            return CalculateTotalPrice();
+        }
+        /// <summary>
+        /// 計算總價格
+        /// </summary>
+        /// <returns></returns>
+        private decimal CalculateTotalPrice()
+        {
+            var originalPrice = this.merchandises.Sum(book => book.price);
+            var bookCountFromDiscounte = this.merchandises.GroupBy(book => book.series).Count();
+            var discount = this.CalculateTheDiscount(bookCountFromDiscounte);
+
+            var totalPrice = originalPrice * discount;
             return totalPrice;
         }
         /// <summary>
