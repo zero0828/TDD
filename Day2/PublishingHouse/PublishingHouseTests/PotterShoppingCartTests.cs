@@ -121,5 +121,27 @@ namespace PublishingHouse.Tests
             //assert 
             Assert.AreEqual(expected, actual);
         }
+        [TestMethod()]
+        public void CheckOutTest_第一到三集各買1本_先打9折_折扣後為270元_並且再加買1本第三集_1本單價100元_共四本書_結帳總金額為370元()
+        {
+            //arrange 
+            var target = new PotterShoppingCart();
+
+            //每一本單價100元   
+            target.addMerchandiseToCart(new List<Book>(){
+                                    new Book() { series = SeriesOfBooks.one  ,name = "第一集", price = 100 },
+                                    new Book() { series = SeriesOfBooks.two  ,name = "第二集", price = 100 },
+                                    new Book() { series = SeriesOfBooks.three, name = "第三集", price = 100 },                                   
+                                    new Book() { series = SeriesOfBooks.three , name = "第三集", price = 100 }});
+
+            //預期折扣後總金額
+            var expected = 370m;
+
+            //act
+            var actual = target.CheckOut();
+
+            //assert 
+            Assert.AreEqual(expected, actual);
+        }
     }
 }
