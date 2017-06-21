@@ -56,13 +56,24 @@ namespace PublishingHouse
         /// </summary>
         private decimal CalculateTheDiscountMoney()
         {
-            var discountBooks =
-                this.merchandises.GroupBy(book => book.series).Select(g => g.First()).ToList();
-            var discount = this.CalculateTheDiscount(discountBooks.Count());
+            decimal discountMoney = decimal.Zero;
+           
+            var notYetDiscountBooks = this.merchandises.ToList();            
+            var discountNumber = this.merchandises.GroupBy(book => book.series).Max(group => group.Count());
+           
+            for (; discountNumber > 0; discountNumber--)
+            {
+                var discountBooks = notYetDiscountBooks.GroupBy(book => book.series).Select(g => g.First()).ToList();
+                var discount = this.CalculateTheDiscount(discountBooks.Count());
+                var originalPrice = discountBooks.Sum(book => book.price);
+                discountMoney += originalPrice * (1 - discount);
+                foreach (var book in discountBooks)
+                {
+                    notYetDiscountBooks.Remove(book);
+                }
+            }
 
-            var originalPrice = discountBooks.Sum(book => book.price);
-
-            return originalPrice * (1 - discount);
+            return discountMoney;
         }
         /// <summary>
         /// 計算折扣
