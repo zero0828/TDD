@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,6 +26,20 @@ namespace PublishingHouse
         /// </summary>
         private List<Book> merchandises = new List<Book>();
 
+        //暫不使用Hashtable當作折扣表
+        ///// <summary>
+        ///// 折扣表
+        ///// </summary>
+        //private Hashtable discount = new Hashtable();
+        //public PotterShoppingCart()
+        //{
+        //    discount.Add(2, 0.05m);
+        //    discount.Add(3, 0.1m);
+        //    discount.Add(4, 0.2m);
+        //    discount.Add(5, 0.25m);
+        //    discount.Add(1, 0m);
+        //}
+
         /// <summary>
         /// 結帳
         /// </summary>
@@ -47,8 +62,10 @@ namespace PublishingHouse
         /// <summary>
         /// 加入書本到購物車
         /// </summary>           
-        public void addMerchandiseToCart(IEnumerable<Book> books)
-        {
+        public void addMerchandiseToCart(IEnumerable<Book> books) 
+        {   //TODO:等待實際需求後繼續進行修改
+            //if (books == null) { throw new ArgumentNullException(); }
+            //if (!books.Any()) { throw new ArgumentNullException(); }
             this.merchandises.AddRange(books);
         }
         /// <summary>
@@ -57,17 +74,19 @@ namespace PublishingHouse
         private decimal CalculateTheDiscountMoney()
         {
             decimal discountMoney = decimal.Zero;
-           
-            var notYetDiscountBooks = this.merchandises.ToList();            
-            var discountNumber = this.merchandises.GroupBy(book => book.series).Max(group => group.Count());
-           
+
+            var notYetDiscountBooks = this.merchandises.AsEnumerable();
+            var discountNumber = notYetDiscountBooks.GroupBy(book => book.series).Max(group => group.Count());
+
             for (; discountNumber > 0; discountNumber--)
             {
-                var discountBooks = notYetDiscountBooks.GroupBy(book => book.series).Select(g => g.First()).ToList();
-                var discount = this.CalculateTheDiscount(discountBooks.Count());
+                var discountBooks = notYetDiscountBooks.GroupBy(book => book.series).Select(g => g.First());
                 var originalPrice = discountBooks.Sum(book => book.price);
-                discountMoney += originalPrice * (1 - discount);
-                notYetDiscountBooks = notYetDiscountBooks.Except(discountBooks).ToList();               
+                var discount = this.CalculateTheDiscount(discountBooks.Count());
+
+                discountMoney += originalPrice * discount;
+               
+                notYetDiscountBooks = notYetDiscountBooks.Except(discountBooks);
             }
 
             return discountMoney;
@@ -82,15 +101,15 @@ namespace PublishingHouse
             switch (bookCount)
             {
                 case 2:
-                    return 0.95m;
+                    return 0.05m;
                 case 3:
-                    return 0.9m;
+                    return 0.1m;
                 case 4:
-                    return 0.8m;
+                    return 0.2m;
                 case 5:
-                    return 0.75m;
+                    return 0.25m;
                 default:
-                    return 1m;
+                    return 0m;
             }
         }
     }
