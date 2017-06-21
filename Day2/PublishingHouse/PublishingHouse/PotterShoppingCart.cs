@@ -38,6 +38,12 @@ namespace PublishingHouse
             if(list.Count() == 2)
             {
                 this.totalPrice = this.totalPrice * 0.95m;
+                return;
+            }
+            if (list.Count() == 3)
+            {
+                this.totalPrice = this.totalPrice * 0.9m;
+                return;
             }
         }
     }
