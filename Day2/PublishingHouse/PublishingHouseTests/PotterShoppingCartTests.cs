@@ -22,9 +22,8 @@ namespace PublishingHouse.Tests
             //arrange 
             var target = new PotterShoppingCart();
 
-            target.addMerchandiseToCart<Book>(new List<Book>() {
-                                        new Book() { Name = "第一集", Price = 100 } },
-                                        (book) => book.Price);
+            target.addMerchandiseToCart(new List<Book>() {
+                                        new Book() { series = SeriesOfBooks.one , name = "第一集", price = 100 } });
 
             //每一本都是賣100元
             var expected = 100m;
@@ -43,10 +42,9 @@ namespace PublishingHouse.Tests
             var target = new PotterShoppingCart();
 
             //每一本單價100元   
-            target.addMerchandiseToCart<Book>(new List<Book>() {
-                                    new Book() { Name = "第一集", Price = 100 },
-                                    new Book() { Name = "第二集", Price = 100 }},
-                                    (book) => book.Price);
+            target.addMerchandiseToCart(new List<Book>() {
+                                    new Book() { series = SeriesOfBooks.one  ,name = "第一集", price = 100 },
+                                    new Book() { series = SeriesOfBooks.two  ,name = "第二集", price = 100 }});
 
             //預期折扣後總金額
             var expected = 190m;
@@ -65,12 +63,10 @@ namespace PublishingHouse.Tests
             var target = new PotterShoppingCart();
 
             //每一本單價100元   
-            target.addMerchandiseToCart<Book>(new List<Book>(){
-                                    new Book() { Name = "第一集", Price = 100 },
-                                    new Book() { Name = "第二集", Price = 100 },
-                                    new Book() { Name = "第三集", Price = 100 }},
-                                    (book) => book.Price);
-
+            target.addMerchandiseToCart(new List<Book>(){
+                                    new Book() { series = SeriesOfBooks.one  ,name = "第一集", price = 100 },
+                                    new Book() { series = SeriesOfBooks.two  ,name = "第二集", price = 100 },
+                                    new Book() { series = SeriesOfBooks.three, name = "第三集", price = 100 }});
             //預期折扣後總金額
             var expected = 270m;
 
@@ -87,12 +83,11 @@ namespace PublishingHouse.Tests
             var target = new PotterShoppingCart();
 
             //每一本單價100元   
-            target.addMerchandiseToCart<Book>(new List<Book>(){
-                                    new Book() { Name = "第一集", Price = 100 },
-                                    new Book() { Name = "第二集", Price = 100 },
-                                    new Book() { Name = "第三集", Price = 100 },
-                                    new Book() { Name = "第四集", Price = 100 }},
-                                    (book) => book.Price);
+            target.addMerchandiseToCart(new List<Book>(){
+                                    new Book() { series = SeriesOfBooks.one  ,name = "第一集", price = 100 },
+                                    new Book() { series = SeriesOfBooks.two  ,name = "第二集", price = 100 },
+                                    new Book() { series = SeriesOfBooks.three, name = "第三集", price = 100 },
+                                    new Book() { series = SeriesOfBooks.four , name = "第四集", price = 100 }});
 
             //預期折扣後總金額
             var expected = 320m;

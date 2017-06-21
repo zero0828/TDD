@@ -5,9 +5,18 @@ using System.Text;
 
 namespace PublishingHouse
 {
+    public enum SeriesOfBooks
+    {
+        one = 1,
+        two,
+        three,
+        four,
+        fives,
+    }
     public class Book
     {
-        public string Name = string.Empty;
-        public decimal Price = decimal.Zero;
+        public SeriesOfBooks series = SeriesOfBooks.one;
+        public string name = string.Empty;
+        public decimal price = decimal.Zero;
     }
 }

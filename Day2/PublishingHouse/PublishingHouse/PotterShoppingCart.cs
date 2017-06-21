@@ -20,21 +20,37 @@ namespace PublishingHouse
     /// </remarks>
     public class PotterShoppingCart
     {
-        private decimal totalPrice = decimal.Zero;
+        /// <summary>
+        /// 所有商品
+        /// </summary>
+        private List<Book> merchandises = new List<Book>();
+        /// <summary>
+        /// 折扣前的總價格
+        /// </summary>
+        private decimal originalPrice
+        {
+            get
+            {
+                return this.merchandises.Sum(book => book.price);
+            }
+        }
         /// <summary>
         /// 結帳
         /// </summary>
         /// <returns>總金額</returns>
         public decimal CheckOut()
         {
-            return this.totalPrice;
+            var bookCount = this.merchandises.GroupBy(book => book.series).Count();
+            var discount = this.CalculateTheDiscount(bookCount);
+            var totalPrice = this.originalPrice * discount;
+            return totalPrice;
         }
         /// <summary>
         /// 加入書本到購物車
         /// </summary>           
-        public void addMerchandiseToCart<TSource>(IEnumerable<TSource> list, Func<TSource, decimal> selector)
-        {        
-            this.totalPrice = list.Sum(selector) * CalculateTheDiscount(list.Count()); 
+        public void addMerchandiseToCart(IEnumerable<Book> list)
+        {
+            this.merchandises.AddRange(list);
         }
         /// <summary>
         /// 計算折扣
@@ -43,7 +59,7 @@ namespace PublishingHouse
         /// <returns></returns>
         private decimal CalculateTheDiscount(int bookCount)
         {
-            switch(bookCount)
+            switch (bookCount)
             {
                 case 2:
                     return 0.95m;
@@ -53,7 +69,7 @@ namespace PublishingHouse
                     return 0.8m;
                 default:
                     return 1m;
-            }            
+            }
         }
     }
 }
