@@ -67,6 +67,8 @@ namespace PublishingHouse
                     return 0.9m;
                 case 4:
                     return 0.8m;
+                case 5:
+                    return 0.75m;
                 default:
                     return 1m;
             }
