@@ -32,19 +32,26 @@ namespace PublishingHouse
         /// <summary>
         /// 加入書本到購物車
         /// </summary>           
-        public void addBookToCart(IEnumerable<Book> list)
+        public void addMerchandiseToCart<TSource>(IEnumerable<TSource> list, Func<TSource, decimal> selector)
+        {        
+            this.totalPrice = list.Sum(selector) * CalculateTheDiscount(list.Count()); 
+        }
+        /// <summary>
+        /// 計算折扣
+        /// </summary>
+        /// <param name="bookCount"></param>
+        /// <returns></returns>
+        private decimal CalculateTheDiscount(int bookCount)
         {
-            this.totalPrice = list.Sum((book) => book.Price);
-            if(list.Count() == 2)
+            switch(bookCount)
             {
-                this.totalPrice = this.totalPrice * 0.95m;
-                return;
-            }
-            if (list.Count() == 3)
-            {
-                this.totalPrice = this.totalPrice * 0.9m;
-                return;
-            }
+                case 2:
+                    return 0.95m;
+                case 3:
+                    return 0.9m;
+                default:
+                    return 1m;
+            }            
         }
     }
 }
