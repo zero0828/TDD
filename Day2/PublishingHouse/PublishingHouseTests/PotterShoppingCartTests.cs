@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using PublishingHouse;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace PublishingHouse.Tests
-{  
+{
     /// <summary>
     /// Feature: PotterShoppingCart
     /// In order to 提供最便宜的價格給來買書的爸爸媽媽
@@ -21,17 +21,37 @@ namespace PublishingHouse.Tests
         {
             //arrange 
             var target = new PotterShoppingCart();
-             
+
             target.addBookToCart();
 
             //每一本都是賣100元
-            var expected = 100; 
+            var expected = 100;
 
             //act
             var actual = target.CheckOut();
 
             //assert 
-            Assert.AreEqual(expected,actual);
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod()]
+        public void CheckOutTest_第一集與第二集各買1本_1本單價100元_打95折_結帳總金額為190元()
+        {
+            //arrange 
+            var target = new PotterShoppingCart();
+
+            //每一本單價100元
+            target.addBookToCart(new Book() { Name = "", Price = 100 });
+            target.addBookToCart(new Book() { Name = "", Price = 100 });
+
+            //預期折扣後總金額
+            var expected = 195;
+
+            //act
+            var actual = target.CheckOut();
+
+            //assert 
+            Assert.AreEqual(expected, actual);
         }
     }
 }
